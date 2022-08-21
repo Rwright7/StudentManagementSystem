@@ -13,7 +13,7 @@ void SearchRecords();
 void DeleteRecords();
 
 
-struct students //beinginning of struct
+struct students 
 {
     char StudFirstName[20], StudLastName[20], Teacher[20], grade[3];
     int StudentClass, Age;
@@ -21,14 +21,14 @@ struct students //beinginning of struct
     float TotalGradeStudents;
     float Average;
 
-}studs; //end of struct
+}studs; 
 
 
 
-//Start of main function
+
 int main()
 {
-    int choice; //declaration of variable
+    int choice; 
 
     printf("\n\n\n\n");
         printf("\n\n\n\n");
@@ -46,7 +46,7 @@ do
     choice=menu();
     system("cls");
 
-    switch (choice)//allows user tp choose from the following options
+    switch (choice)
     {
 
         case 1: AddRecords();
@@ -80,14 +80,14 @@ int menu()
             printf("4) Search Record(s)\n");
             printf("5) Delete Record(s)\n");
             printf("6) Exit menu\n");
-            scanf( "%d", &choice); //reads the value entered
+            scanf( "%d", &choice); 
             return choice;
 }
 
 
 void AddRecords()
 {
-	//start of add function
+	
 	FILE *repository; //calls the file repository
     int StudentCount,NumberItems;
     float average;
@@ -107,51 +107,51 @@ void AddRecords()
 					  printf("\n HOW MANY RECORDS WILL YOU ADD:");
 					  scanf("%d",&NumberItems);
 
-			for (StudentCount=0; StudentCount<NumberItems; StudentCount++) //for loop counter
+			for (StudentCount=0; StudentCount<NumberItems; StudentCount++) 
 			{
 				    printf("\t ENTER THE FOLLOWING INFORMATION BELOW: ");
 				    printf("\n");
 				    printf("\n STUDENT INFO");
 				    printf("\n_________________________________________");
-					printf("\n STUDENT's FIRST NAME: "); //prompts the user to enter data
-                    scanf("%s", &studs.StudFirstName); // gets variable from struct and reads the data entered
+					printf("\n STUDENT's FIRST NAME: ");
+                    scanf("%s", &studs.StudFirstName); 
                     fflush (stdin);  //clears buffer
                     printf("\n STUDENT'S LAST NAME: ");
                     scanf("%s", &studs.StudLastName);
-                    fflush (stdin); //clears buffer
+                    fflush (stdin);
                     printf("\n TEACHER'S NAME: ");
                     scanf("%s", &studs.Teacher);
-                    fflush (stdin);  //clears buffer
+                    fflush (stdin);  
                     printf("\n STUDENT'S CLASS: ");
                     scanf("%d",&studs.StudentClass);
-                    fflush (stdin);  //clears buffer
+                    fflush (stdin);  
                     printf("\n STUDENT's AGE: ");
                     scanf("%d", &studs.Age);
-                    fflush (stdin);  //clears buffer
+                    fflush (stdin);  
                     printf("\n");
                     printf("\n SUBJECT GRADE ");
                     printf("\n_________________________________________");
                     printf("\n MATHEMATICS: " );
                     scanf("%f", &studs.Math);
-                    fflush (stdin);  //clears buffer
+                    fflush (stdin);  
                     printf("\n ENGLISH: ");
                     scanf("%f", &studs.English);
-                    fflush (stdin);  //clears buffer
+                    fflush (stdin); 
                     printf("\n SOCIALS STUDIES: ");
                     scanf("%f", &studs.SocialStudies);
-                    fflush (stdin);  //clears buffer
+                    fflush (stdin);  
                     printf("\n MUSIC: ");
                     scanf("%f", &studs.Music);
-                    fflush (stdin);  //clears buffer
+                    fflush (stdin); 
                     printf("\n PHYSICAL EDUCATION: ");
                     scanf("%f", &studs.PhysicalEdu);
-                    fflush (stdin);  //clears buffer
+                    fflush (stdin);  
         
               studs.TotalGradeStudents=studs.Math+studs.English+studs.SocialStudies+studs.Music+studs.PhysicalEdu;
               
                 //Determines whether the student got an A,B or C based on their average
                 studs.Average = studs.TotalGradeStudents/5;
-                if(studs.Average>=80)// Determines whether the student got an A,B or C based on their average
+                if(studs.Average>=80)
                 {
                     strcpy(studs.grade,"A");
                 }
@@ -172,17 +172,17 @@ void AddRecords()
 			}
 		}
 		
-	fclose(repository); //close the repository file
+	fclose(repository); 
 	printf("\nFILE REPOSITORY WAS SUCCESSFULLY CREATED!!\n\n");
 	system("pause");
 	system("cls");
  	return;
-} //end of the add function
+} 
 
 
 void ViewRecords()
 {
-	//start of view function
+	
 	FILE *repository;
     
     if( (repository=fopen("repository.txt","r")) == NULL)
@@ -214,7 +214,7 @@ void ViewRecords()
 		 rewind(repository); // brings pointer back to the start of the file
 	 }
 
-	fclose(repository); //close file
+	fclose(repository); 
 	system("pause");
 	return;
 }
@@ -222,12 +222,12 @@ void ViewRecords()
 
 void UpdateRecords()
 {
-	//start of update function
+	
     FILE *repository;
     struct students studs[100];
     struct students temporarystuds[100];
 
-    repository=fopen("repository.txt", "r+"); // open text in read
+    repository=fopen("repository.txt", "r+");
     int i=0, x=0, counter=0, found=0;
 	char search[20];
 
@@ -263,7 +263,7 @@ void UpdateRecords()
 				temporarystuds[i].Music=studs[i].Music;
 				temporarystuds[i].PhysicalEdu=studs[i].PhysicalEdu;
 				
-				i++; //increment
+				i++; 
             }
                 rewind(repository); //brings pointer back to the beginning
                     
@@ -317,7 +317,7 @@ void UpdateRecords()
 						}
 
                  }
-                 fclose(repository); //closes file
+                 fclose(repository); 
                     //open the repository and store the information in it
                  repository=fopen("repository.txt", "w");
         
@@ -340,28 +340,28 @@ void UpdateRecords()
 					temporarystuds[x].PhysicalEdu); //studs.grade);
 				}
 				
-			fclose(repository); //closes file
+			fclose(repository); 
 			system("cls");
-			printf("FILE HAS BEEN SUCCESSFULLY UPDATED\n\n"); //tells the user the file has been updated successfully
+			printf("FILE HAS BEEN SUCCESSFULLY UPDATED\n\n"); 
 			system("pause");
 			system("cls");
 			return;
-}//end of update function
+}
 
 void SearchRecords()
 {
-	//start of search function
+	
     struct students studs;
     FILE *repository;
     char name[100];
 
-         repository=fopen("repository.txt", "rb");  //open file in read binary
+         repository=fopen("repository.txt", "rb");  
          if (repository==NULL)
          {
              printf("ERROR IN OPENING!!!\n");
              exit(1);
          }
-                printf("\nENTER THE NAME OF STUDENT YOU WANT TO SEARCH: \n"); //prompts the user to enter name they want to search
+                printf("\nENTER THE NAME OF STUDENT YOU WANT TO SEARCH: \n"); 
                 scanf("%d",&name);
                     // reads information from the file
                     while(fread(&studs,sizeof(studs),1,repository)==1)
@@ -376,12 +376,12 @@ void SearchRecords()
                                 else
                                     printf("\nFILE NOT FOUND!!!!");
                     }
-                        fclose(repository);  //closes file
+                        fclose(repository);  
                             printf("\n*******PRESS ANY KEY*********");
                             system("pause");
                             system("cls");
 
-}//end of search function
+}
 
 void DeleteRecords()
 {
@@ -391,8 +391,8 @@ void DeleteRecords()
 
         repository = fopen("repository.txt","r");
             printf("THIS FILE CURRENTLY CONTAINS: \n");
-            printf("\n#######################################################################################################################"); // welcoming message
-            printf("\nFIRST NAME\tLAST NAME\tTEACHER\tSTUDENT CLASS\tAGE\tMATHS\tENGLISH\tSOCIAL STUDIES\tMUSIC\tPE\n"); //display information headings 
+            printf("\n#######################################################################################################################"); 
+            printf("\nFIRST NAME\tLAST NAME\tTEACHER\tSTUDENT CLASS\tAGE\tMATHS\tENGLISH\tSOCIAL STUDIES\tMUSIC\tPE\n"); 
             printf("\n#######################################################################################################################");
 
                 ReadFromFile=fgetc(repository);
@@ -439,23 +439,3 @@ void DeleteRecords()
 return;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
