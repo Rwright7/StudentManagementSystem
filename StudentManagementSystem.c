@@ -362,7 +362,7 @@ void AddRecords()
            exit(1);
        }
        printf("\nENTER THE NAME OF STUDENT YOU WANT TO SEARCH: \n"); 
-       scanf("%d",&name);
+       scanf("%s",&name);
                     // reads information from the file
        while(fread(&studs,sizeof(studs),1,repository)==1)
        {
