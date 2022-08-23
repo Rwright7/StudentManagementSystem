@@ -183,11 +183,11 @@ void AddRecords()
         void ViewRecords()
         {
            
-           FILE *repository;
+           FILE *repository = fopen("repository.txt","r"); 
            
-           if( (repository=fopen("repository.txt","r")) == NULL)
+           if( (repository == NULL)
            {
-              printf("Nothing in pointer.\n");
+              puts("Nothing in pointer.\n");
           } 
           else
           {
