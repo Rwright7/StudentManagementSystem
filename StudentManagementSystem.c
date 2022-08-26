@@ -11,10 +11,10 @@ void UpdateRecords();
 void SearchRecords();
 void DeleteRecords();
 
-struct students {
+struct Student {
     char StudFirstName[20], StudLastName[20], Teacher[20], grade[3];
     int StudentClass = 0, Age = 0;
-    float Math = 0.0f, English = 0.0f, SocialStudies 0.0f, Music = 0.0f, PhysicalEdu = 0.0f;
+    float Math = 0.0f, English = 0.0f, SocialStudies = 0.0f, Music = 0.0f, PhysicalEdu = 0.0f;
     float TotalGradeStudents = 0.0f;
     float Average = 0.0f;
 };
@@ -42,7 +42,7 @@ int main()
         
         switch (choice)
         {
-            
+
             case 1:
             AddRecords();
             break;
@@ -88,9 +88,12 @@ int menu()
 
 void AddRecords()
 {
-    FILE *repository = (fopen("repository.txt", "a+"))
+    FILE *repository; // calls the file repository
     int StudentCount = 0, NumberItems = 0;
-    struct students studs; 
+    struct Student Stud;  
+
+
+    repository = (fopen("repository.txt", "a+")); // creates the file repository.txt and opens it for reading and appending.
     
     if (repository == NULL)
     {
@@ -112,55 +115,55 @@ void AddRecords()
             printf("\n STUDENT INFO");
             printf("\n_________________________________________");
             printf("\n STUDENT's FIRST NAME: ");
-            scanf("%s", &studs.StudFirstName);
+            scanf("%s", &Stud.StudFirstName);
             fflush(stdin); // clears buffer
             printf("\n STUDENT'S LAST NAME: ");
-            scanf("%s", &studs.StudLastName);
+            scanf("%s", &Stud.StudLastName);
             fflush(stdin);
             printf("\n TEACHER'S NAME: ");
-            scanf("%s", &studs.Teacher);
+            scanf("%s", &Stud.Teacher);
             fflush(stdin);
             printf("\n STUDENT'S CLASS: ");
-            scanf("%d", &studs.StudentClass);
+            scanf("%d", &Stud.StudentClass);
             fflush(stdin);
             printf("\n STUDENT's AGE: ");
-            scanf("%d", &studs.Age);
+            scanf("%d", &Stud.Age);
             fflush(stdin);
             printf("\n");
             printf("\n SUBJECT GRADE ");
             printf("\n_________________________________________");
             printf("\n MATHEMATICS: ");
-            scanf("%f", &studs.Math);
+            scanf("%f", &Stud.Math);
             fflush(stdin);
             printf("\n ENGLISH: ");
-            scanf("%f", &studs.English);
+            scanf("%f", &Stud.English);
             fflush(stdin);
             printf("\n SOCIALS STUDIES: ");
-            scanf("%f", &studs.SocialStudies);
+            scanf("%f", &Stud.SocialStudies);
             fflush(stdin);
             printf("\n MUSIC: ");
-            scanf("%f", &studs.Music);
+            scanf("%f", &Stud.Music);
             fflush(stdin);
             printf("\n PHYSICAL EDUCATION: ");
-            scanf("%f", &studs.PhysicalEdu);
+            scanf("%f", &Stud.PhysicalEdu);
             fflush(stdin);
             
-            studs.TotalGradeStudents = studs.Math + studs.English + studs.SocialStudies + studs.Music + studs.PhysicalEdu;
+            Stud.TotalGradeStudents = Stud.Math + Stud.English + Stud.SocialStudies + Stud.Music + Stud.PhysicalEdu;
             
             // Determines whether the student got an A,B or C based on their average
-            studs.Average = studs.TotalGradeStudents / 5;
-            if (studs.Average >= 80) {
-                strcpy(studs.grade, "A");
-            } else if (studs.Average < 80 && studs.Average >= 60) {
-                strcpy(studs.grade, "B");
-            } else if (studs.Average < 60) {
-                strcpy(studs.grade, "C");
+            Stud.Average = Stud.TotalGradeStudents / 5;
+            if (Stud.Average >= 80) {
+                strcpy(Stud.grade, "A");
+            } else if (Stud.Average < 80 && Stud.Average >= 60) {
+                strcpy(Stud.grade, "B");
+            } else if (Stud.Average < 60) {
+                strcpy(Stud.grade, "C");
             }
             
             // write students information to the repository file
-            fprintf(repository, "\n%s\t %s\t %s\t", studs.StudFirstName, studs.StudLastName, studs.Teacher);
-            fprintf(repository, "%d\t %d\t %.2f\t", studs.StudentClass, studs.Age, studs.Math);
-            fprintf(repository, "%.2f\t %.2f\t %.2f\t %.2f", studs.English, studs.SocialStudies, studs.Music, studs.PhysicalEdu); // studs.grade);
+            fprintf(repository, "\n%s\t %s\t %s\t", Stud.StudFirstName, Stud.StudLastName, Stud.Teacher);
+            fprintf(repository, "%d\t %d\t %.2f\t", Stud.StudentClass, Stud.Age, Stud.Math);
+            fprintf(repository, "%.2f\t %.2f\t %.2f\t %.2f", Stud.English, Stud.SocialStudies, Stud.Music, Stud.PhysicalEdu); // Stud.grade);
         }
     }
     
@@ -184,21 +187,21 @@ void ViewRecords()
         // read from the file and prints it to the user
         while (!feof(repository))
         {
-            fscanf(repository, "%s %s %s", studs.StudFirstName, studs.StudLastName, studs.Teacher);
-            fscanf(repository, "%d %d %f", &studs.StudentClass, &studs.Age, &studs.Math);
-            fscanf(repository, "%f %f %f %f", &studs.English, &studs.SocialStudies, &studs.Music, &studs.PhysicalEdu); // studs.grade);
+            fscanf(repository, "%s %s %s", Stud.StudFirstName, Stud.StudLastName, Stud.Teacher);
+            fscanf(repository, "%d %d %f", &Stud.StudentClass, &Stud.Age, &Stud.Math);
+            fscanf(repository, "%f %f %f %f", &Stud.English, &Stud.SocialStudies, &Stud.Music, &Stud.PhysicalEdu); // Stud.grade);
             
             printf("\n\n STUDENT INFO ");
             printf("\n__________________________________________________________________________________________________");
-            printf("\n\tSTUDENT FIRST NAME : %s", studs.StudFirstName);
-            printf("\n\n\tSTUDENT LAST NAME: %s", studs.StudLastName);
-            printf("\n\n\tTEACHER : %s", studs.Teacher);
-            printf("\n\n\tSTUDENT CLASS : %d", studs.StudentClass);
-            printf("\n\n\tSTUDENT AGE : %d", studs.Age);
+            printf("\n\tSTUDENT FIRST NAME : %s", Stud.StudFirstName);
+            printf("\n\n\tSTUDENT LAST NAME: %s", Stud.StudLastName);
+            printf("\n\n\tTEACHER : %s", Stud.Teacher);
+            printf("\n\n\tSTUDENT CLASS : %d", Stud.StudentClass);
+            printf("\n\n\tSTUDENT AGE : %d", Stud.Age);
             printf("\n");
             printf("\n\n\tSUBJECT GRADE ");
             printf("\n\t______________________________________________________________________________________");
-            printf("\n\n\t MATHEMATICS: %.2f, ENGLISH: %.2f, SOCIAL STUDIES: %.2f, MUSIC: %.2f, PE: %.2f \n\n", studs.Math, studs.English, studs.SocialStudies, studs.Music, studs.PhysicalEdu);
+            printf("\n\n\t MATHEMATICS: %.2f, ENGLISH: %.2f, SOCIAL STUDIES: %.2f, MUSIC: %.2f, PE: %.2f \n\n", Stud.Math, Stud.English, Stud.SocialStudies, Stud.Music, Stud.PhysicalEdu);
             printf("\n\n");
         }
         rewind(repository); // brings pointer back to the start of the file
@@ -213,8 +216,8 @@ void ViewRecords()
 void UpdateRecords()
 {
     FILE *repository;
-    struct students studs[100];
-    struct students temporarystuds[100];
+    struct Student Stud[100];
+    struct Students TemporaryStud[100];
 
     repository = fopen("repository.txt", "r+");
     int i = 0, x = 0, counter = 0, found = 0;
@@ -237,22 +240,22 @@ void UpdateRecords()
         while (!feof(repository))
         {
             fscanf(repository, "%s %s %s %d %d %f %f %f %f %f",
-               &studs[i].StudFirstName, &studs[i].StudLastName, &studs[i].Teacher,
-               &studs[i].StudentClass, &studs[i].Age, &studs[i].Math,
-               &studs[i].English, &studs[i].SocialStudies, &studs[i].Music,
-               &studs[i].PhysicalEdu);
+             &Stud[i].StudFirstName, &Stud[i].StudLastName, &Stud[i].Teacher,
+             &Stud[i].StudentClass, &Stud[i].Age, &Stud[i].Math,
+             &Stud[i].English, &Stud[i].SocialStudies, &Stud[i].Music,
+             &Stud[i].PhysicalEdu);
             
-            strcpy(temporarystuds[i].StudFirstName, studs[i].StudFirstName);
-            strcpy(temporarystuds[i].StudLastName, studs[i].StudLastName);
-            strcpy(temporarystuds[i].Teacher, studs[i].Teacher);
+            strcpy(TemporaryStud[i].StudFirstName, Stud[i].StudFirstName);
+            strcpy(TemporaryStud[i].StudLastName, Stud[i].StudLastName);
+            strcpy(TemporaryStud[i].Teacher, Stud[i].Teacher);
             
-            temporarystuds[i].StudentClass = studs[i].StudentClass;
-            temporarystuds[i].Age = studs[i].Age;
-            temporarystuds[i].Math = studs[i].Math;
-            temporarystuds[i].English = studs[i].English;
-            temporarystuds[i].SocialStudies = studs[i].SocialStudies;
-            temporarystuds[i].Music = studs[i].Music;
-            temporarystuds[i].PhysicalEdu = studs[i].PhysicalEdu;
+            TemporaryStud[i].StudentClass = Stud[i].StudentClass;
+            TemporaryStud[i].Age = Stud[i].Age;
+            TemporaryStud[i].Math = Stud[i].Math;
+            TemporaryStud[i].English = Stud[i].English;
+            TemporaryStud[i].SocialStudies = Stud[i].SocialStudies;
+            TemporaryStud[i].Music = Stud[i].Music;
+            TemporaryStud[i].PhysicalEdu = Stud[i].PhysicalEdu;
             
             i++;
         }
@@ -265,37 +268,37 @@ void UpdateRecords()
         // collects new information for such student
         for (counter = 0; counter < i; counter++)
         {
-            if (strcmp(search, temporarystuds[counter].StudLastName) == 0)
+            if (strcmp(search, TemporaryStud[counter].StudLastName) == 0)
             {
                 printf("\n Enter the student new first name: ");
-                scanf("%s", &temporarystuds[counter].StudFirstName);
+                scanf("%s", &TemporaryStud[counter].StudFirstName);
                 
                 printf("\n Enter the student new last  name: ");
-                scanf("%s", &temporarystuds[counter].StudLastName);
+                scanf("%s", &TemporaryStud[counter].StudLastName);
                 
                 printf("\n Enter the teacher new name: ");
-                scanf("%s", &temporarystuds[counter].Teacher);
+                scanf("%s", &TemporaryStud[counter].Teacher);
                 
                 printf("\n Enter the student new class: ");
-                scanf("%d", &temporarystuds[counter].StudentClass);
+                scanf("%d", &TemporaryStud[counter].StudentClass);
                 
                 printf("\n Enter the student new age: ");
-                scanf("%d", &temporarystuds[counter].Age);
+                scanf("%d", &TemporaryStud[counter].Age);
                 
                 printf("\n Enter the new Math grade: ");
-                scanf("%f", &temporarystuds[counter].Math);
+                scanf("%f", &TemporaryStud[counter].Math);
                 
                 printf("\n Enter the new English grade: ");
-                scanf("%f", &temporarystuds[counter].English);
+                scanf("%f", &TemporaryStud[counter].English);
                 
                 printf("\n Enter the new Social Studies grade: ");
-                scanf("%f", &temporarystuds[counter].SocialStudies);
+                scanf("%f", &TemporaryStud[counter].SocialStudies);
                 
                 printf("\n Enter the new Music grade: ");
-                scanf("%f", &temporarystuds[counter].Music);
+                scanf("%f", &TemporaryStud[counter].Music);
                 
                 printf("\n Enter the new Physical Education grade: ");
-                scanf("%f", &temporarystuds[counter].PhysicalEdu);
+                scanf("%f", &TemporaryStud[counter].PhysicalEdu);
                 
                 system("cls");
                 
@@ -315,11 +318,11 @@ void UpdateRecords()
     
     for (x = 0; x < counter; x++)
     {
-        fprintf(repository, "\n%s\t %s\t %s\t", temporarystuds[x].StudFirstName, temporarystuds[x].StudLastName, temporarystuds[x].Teacher);
+        fprintf(repository, "\n%s\t %s\t %s\t", TemporaryStud[x].StudFirstName, TemporaryStud[x].StudLastName, TemporaryStud[x].Teacher);
         
-        fprintf(repository, "%d\t %d\t %.2f\t", temporarystuds[x].StudentClass, temporarystuds[x].Age, temporarystuds[x].Math);
+        fprintf(repository, "%d\t %d\t %.2f\t", TemporaryStud[x].StudentClass, TemporaryStud[x].Age, TemporaryStud[x].Math);
         
-        fprintf(repository, "%.2f\t %.2f\t %.2f\t %.2f", temporarystuds[x].English, temporarystuds[x].SocialStudies, temporarystuds[x].Music, temporarystuds[x].PhysicalEdu);
+        fprintf(repository, "%.2f\t %.2f\t %.2f\t %.2f", TemporaryStud[x].English, TemporaryStud[x].SocialStudies, TemporaryStud[x].Music, TemporaryStud[x].PhysicalEdu);
     }
     
     fclose(repository);
@@ -333,7 +336,7 @@ void UpdateRecords()
 
 void SearchRecords()
 {
-    struct students studs;
+    struct Student Stud;
     FILE *repository = fopen("repository.txt", "rb");
     char name[100];
     
@@ -347,16 +350,16 @@ void SearchRecords()
     scanf("%s", &name);
     
     // reads information from the file
-    while (fread(&studs, sizeof(studs), 1, repository) == 1)
+    while (fread(&Stud, sizeof(Stud), 1, repository) == 1)
     {
-        if (strcmp(studs.StudFirstName, name) == 0) // compare the first name to the name entered
+        if (strcmp(Stud.StudFirstName, name) == 0) // compare the first name to the name entered
         {
             // prints out the information
             printf("\nINFORMATION ABOUT %s", name);
             printf("\nSTUDENT FIRST NAME:%s\nSTUDENT LAST NAME:%s\nTEACHER:%s\nSTUDENT CLASS:%d\nAGE:%d\nMATH:%d\nENGLISH:%d\nSOCIALSTUDIES:%d\nMUSIC:%d\nPHYSICAL EDUCATION:%d",
-                studs.StudFirstName, studs.StudLastName, studs.Teacher,
-                studs.StudentClass, studs.Age, studs.Math, studs.English,
-                studs.SocialStudies, studs.Music, studs.PhysicalEdu);
+                Stud.StudFirstName, Stud.StudLastName, Stud.Teacher,
+                Stud.StudentClass, Stud.Age, Stud.Math, Stud.English,
+                Stud.SocialStudies, Stud.Music, Stud.PhysicalEdu);
         }
         else
         {
