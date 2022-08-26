@@ -1,7 +1,6 @@
-#include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+#include <string.h>
 
 // FUNCTION PROTOTYPES
 int menu();
@@ -115,13 +114,13 @@ void AddRecords()
             printf("\n STUDENT INFO");
             printf("\n_________________________________________");
             printf("\n STUDENT's FIRST NAME: ");
-            scanf("%s", &stud.studFirstName);
+            scanf("%s", stud.studFirstName);
             fflush(stdin); // clears buffer
             printf("\n STUDENT'S LAST NAME: ");
-            scanf("%s", &stud.studLastName);
+            scanf("%s", stud.studLastName);
             fflush(stdin);
             printf("\n TEACHER'S NAME: ");
-            scanf("%s", &stud.Teacher);
+            scanf("%s", stud.Teacher);
             fflush(stdin);
             printf("\n STUDENT'S CLASS: ");
             scanf("%d", &stud.studentClass);
@@ -177,6 +176,7 @@ void AddRecords()
 
 void ViewRecords()
 {
+    struct student stud;
     FILE *repository = fopen("repository.txt", "r");
     if (repository == NULL)
     {
@@ -217,7 +217,7 @@ void UpdateRecords()
 {
     FILE *repository;
     struct student stud[100];
-    struct students Temporarystud[100];
+    struct student Temporarystud[100];
 
     repository = fopen("repository.txt", "r+");
     int i = 0, x = 0, counter = 0, found = 0;
@@ -240,7 +240,7 @@ void UpdateRecords()
         while (!feof(repository))
         {
             fscanf(repository, "%s %s %s %d %d %f %f %f %f %f",
-             &stud[i].studFirstName, &stud[i].studLastName, &stud[i].Teacher,
+             stud[i].studFirstName, stud[i].studLastName, stud[i].Teacher,
              &stud[i].studentClass, &stud[i].Age, &stud[i].Math,
              &stud[i].English, &stud[i].Socialstudies, &stud[i].Music,
              &stud[i].PhysicalEdu);
@@ -263,7 +263,7 @@ void UpdateRecords()
         rewind(repository); // brings pointer back to the beginning
         
         printf("\n Please enter the student Last name of the record to be updated: ");
-        scanf("%s", &search);
+        scanf("%s", search);
         
         // collects new information for such student
         for (counter = 0; counter < i; counter++)
@@ -271,13 +271,13 @@ void UpdateRecords()
             if (strcmp(search, Temporarystud[counter].studLastName) == 0)
             {
                 printf("\n Enter the student new first name: ");
-                scanf("%s", &Temporarystud[counter].studFirstName);
+                scanf("%s", Temporarystud[counter].studFirstName);
                 
                 printf("\n Enter the student new last  name: ");
-                scanf("%s", &Temporarystud[counter].studLastName);
+                scanf("%s", Temporarystud[counter].studLastName);
                 
                 printf("\n Enter the teacher new name: ");
-                scanf("%s", &Temporarystud[counter].Teacher);
+                scanf("%s", Temporarystud[counter].Teacher);
                 
                 printf("\n Enter the student new class: ");
                 scanf("%d", &Temporarystud[counter].studentClass);
@@ -347,7 +347,7 @@ void SearchRecords()
     }
     
     printf("\nENTER THE NAME OF STUDENT YOU WANT TO SEARCH: \n");
-    scanf("%s", &name);
+    scanf("%s", name);
     
     // reads information from the file
     while (fread(&stud, sizeof(stud), 1, repository) == 1)
@@ -356,7 +356,7 @@ void SearchRecords()
         {
             // prints out the information
             printf("\nINFORMATION ABOUT %s", name);
-            printf("\nSTUDENT FIRST NAME:%s\nSTUDENT LAST NAME:%s\nTEACHER:%s\nSTUDENT CLASS:%d\nAGE:%d\nMATH:%d\nENGLISH:%d\nSOCIALSTUDIES:%d\nMUSIC:%d\nPHYSICAL EDUCATION:%d",
+            printf("\nSTUDENT FIRST NAME:%s\nSTUDENT LAST NAME:%s\nTEACHER:%s\nSTUDENT CLASS:%d\nAGE:%d\nMATH:%.2f\nENGLISH:%.2f\nSOCIALSTUDIES:%.2f\nMUSIC:%.2f\nPHYSICAL EDUCATION:%.2f",
                 stud.studFirstName, stud.studLastName, stud.Teacher,
                 stud.studentClass, stud.Age, stud.Math, stud.English,
                 stud.Socialstudies, stud.Music, stud.PhysicalEdu);
