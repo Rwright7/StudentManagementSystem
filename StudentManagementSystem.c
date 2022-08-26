@@ -13,11 +13,11 @@ void DeleteRecords();
 
 struct students {
     char StudFirstName[20], StudLastName[20], Teacher[20], grade[3];
-    int StudentClass, Age;
-    float Math, English, SocialStudies, Music, PhysicalEdu;
-    float TotalGradeStudents;
-    float Average;
-} studs;
+    int StudentClass = 0, Age = 0;
+    float Math = 0.0f, English = 0.0f, SocialStudies 0.0f, Music = 0.0f, PhysicalEdu = 0.0f;
+    float TotalGradeStudents = 0.0f;
+    float Average = 0.0f;
+};
 
 
 
@@ -88,13 +88,9 @@ int menu()
 
 void AddRecords()
 {
-    FILE *repository; // calls the file repository
-    int StudentCount = 0, NumberItems = 0, StudentClass, Age;
-    char StudFirstName[20], StudLastName[20], Teacher[20], grade[3];
-    float Math = 0.0f, English = 0.0f, SocialStudies = 0.0f, Music = 0.0f, PhysicalEdu = 0.0f, TotalGradeStudents = 0.0f, Average = 0.0f;
-
-
-    repository = (fopen("repository.txt", "a+")); // creates the file repository.txt and opens it for reading and appending.
+    FILE *repository = (fopen("repository.txt", "a+"))
+    int StudentCount = 0, NumberItems = 0;
+    struct students studs; 
     
     if (repository == NULL)
     {
