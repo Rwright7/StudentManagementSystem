@@ -112,21 +112,21 @@ void AddRecords()
         {
             printf("\t ENTER THE FOLLOWING INFORMATION BELOW: ");
             printf("\n");
-            printf("\n studENT INFO");
+            printf("\n STUDENT INFO");
             printf("\n_________________________________________");
-            printf("\n studENT's FIRST NAME: ");
+            printf("\n STUDENT's FIRST NAME: ");
             scanf("%s", &stud.studFirstName);
             fflush(stdin); // clears buffer
-            printf("\n studENT'S LAST NAME: ");
+            printf("\n STUDENT'S LAST NAME: ");
             scanf("%s", &stud.studLastName);
             fflush(stdin);
             printf("\n TEACHER'S NAME: ");
             scanf("%s", &stud.Teacher);
             fflush(stdin);
-            printf("\n studENT'S CLASS: ");
+            printf("\n STUDENT'S CLASS: ");
             scanf("%d", &stud.studentClass);
             fflush(stdin);
-            printf("\n studENT's AGE: ");
+            printf("\n STUDENT's AGE: ");
             scanf("%d", &stud.Age);
             fflush(stdin);
             printf("\n");
@@ -138,7 +138,7 @@ void AddRecords()
             printf("\n ENGLISH: ");
             scanf("%f", &stud.English);
             fflush(stdin);
-            printf("\n SOCIALS studIES: ");
+            printf("\n SOCIALS STUDIES: ");
             scanf("%f", &stud.Socialstudies);
             fflush(stdin);
             printf("\n MUSIC: ");
@@ -191,17 +191,17 @@ void ViewRecords()
             fscanf(repository, "%d %d %f", &stud.studentClass, &stud.Age, &stud.Math);
             fscanf(repository, "%f %f %f %f", &stud.English, &stud.Socialstudies, &stud.Music, &stud.PhysicalEdu); // stud.grade);
             
-            printf("\n\n studENT INFO ");
+            printf("\n\n STUDENT INFO ");
             printf("\n__________________________________________________________________________________________________");
-            printf("\n\tstudENT FIRST NAME : %s", stud.studFirstName);
-            printf("\n\n\tstudENT LAST NAME: %s", stud.studLastName);
+            printf("\n\tSTUDENT FIRST NAME : %s", stud.studFirstName);
+            printf("\n\n\tSTUDENT LAST NAME: %s", stud.studLastName);
             printf("\n\n\tTEACHER : %s", stud.Teacher);
-            printf("\n\n\tstudENT CLASS : %d", stud.studentClass);
-            printf("\n\n\tstudENT AGE : %d", stud.Age);
+            printf("\n\n\tSTUDENT CLASS : %d", stud.studentClass);
+            printf("\n\n\tSTUDENT AGE : %d", stud.Age);
             printf("\n");
             printf("\n\n\tSUBJECT GRADE ");
             printf("\n\t______________________________________________________________________________________");
-            printf("\n\n\t MATHEMATICS: %.2f, ENGLISH: %.2f, SOCIAL studIES: %.2f, MUSIC: %.2f, PE: %.2f \n\n", stud.Math, stud.English, stud.Socialstudies, stud.Music, stud.PhysicalEdu);
+            printf("\n\n\t MATHEMATICS: %.2f, ENGLISH: %.2f, SOCIAL STUDIES: %.2f, MUSIC: %.2f, PE: %.2f \n\n", stud.Math, stud.English, stud.Socialstudies, stud.Music, stud.PhysicalEdu);
             printf("\n\n");
         }
         rewind(repository); // brings pointer back to the start of the file
@@ -346,7 +346,7 @@ void SearchRecords()
         exit(1);
     }
     
-    printf("\nENTER THE NAME OF studENT YOU WANT TO SEARCH: \n");
+    printf("\nENTER THE NAME OF STUDENT YOU WANT TO SEARCH: \n");
     scanf("%s", &name);
     
     // reads information from the file
@@ -356,7 +356,7 @@ void SearchRecords()
         {
             // prints out the information
             printf("\nINFORMATION ABOUT %s", name);
-            printf("\nstudENT FIRST NAME:%s\nstudENT LAST NAME:%s\nTEACHER:%s\nstudENT CLASS:%d\nAGE:%d\nMATH:%d\nENGLISH:%d\nSOCIALstudIES:%d\nMUSIC:%d\nPHYSICAL EDUCATION:%d",
+            printf("\nSTUDENT FIRST NAME:%s\nSTUDENT LAST NAME:%s\nTEACHER:%s\nSTUDENT CLASS:%d\nAGE:%d\nMATH:%d\nENGLISH:%d\nSOCIALSTUDIES:%d\nMUSIC:%d\nPHYSICAL EDUCATION:%d",
                 stud.studFirstName, stud.studLastName, stud.Teacher,
                 stud.studentClass, stud.Age, stud.Math, stud.English,
                 stud.Socialstudies, stud.Music, stud.PhysicalEdu);
@@ -383,7 +383,7 @@ void DeleteRecords()
     repository = fopen("repository.txt", "r");
     printf("THIS FILE CURRENTLY CONTAINS: \n");
     printf("\n#######################################################################################################################");
-    printf("\nFIRST NAME\tLAST NAME\tTEACHER\tstudENT CLASS\tAGE\tMATHS\tENGLISH\tSOCIAL studIES\tMUSIC\tPE\n");
+    printf("\nFIRST NAME\tLAST NAME\tTEACHER\tSTUDENT CLASS\tAGE\tMATHS\tENGLISH\tSOCIAL STUDIES\tMUSIC\tPE\n");
     printf("\n#######################################################################################################################");
     
     ReadFromFile = fgetc(repository);
