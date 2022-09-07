@@ -336,41 +336,50 @@ void UpdateRecords()
 
 void SearchRecords()
 {
-    struct student stud;
-    FILE *repository = fopen("repository.txt", "rb");
-    char name[100];
-    
-    if (repository == NULL)
+    struct student stud; 
+    char name[20];
+    FILE *repository = fopen("repository.txt", "r");
+
+    printf("\n\n\t\t\t!!!!!!!!!!!!!! Search Students Record !!!!!!!!!!!!!\n");
+    printf("\n Enter Student Name to be viewed:");
+    scanf("%s",name);
+    fflush(stdin);
+    printf("\n");
+
+    while(fscanf(repository,"%s %s %s %d %d %.2f %.2f %.2f %.2f %.2f\n",stud.studFirstName, stud.studLastName, stud.Teacher,
+    &stud.studentClass, &stud.Age, &stud.Math, &stud.English, &stud.Socialstudies, &stud.Music, &stud.PhysicalEdu)!=EOF)
     {
-        printf("ERROR IN OPENING!!!\n");
-        exit(1);
+        if(strcmp(stud.studFirstName,name)==0)
+        {
+
+            printf("Full Name\t");
+            printf("Teacher\t");
+            printf("Class\t");
+            printf("Age\t");
+            printf("Math\t");
+            printf("English\t");
+            printf("Socialstudies\t");
+            printf("Music\t");
+            printf("Physical Education\t\n");
+            printf("======================================================");
+            printf("%s %s\t",stud.studFirstName, stud.studLastName);
+            printf("%s\t",stud.Teacher);
+            printf("%d\t",stud.studentClass);
+            printf("%d\t",stud.Age);
+            printf("%.2f\t",stud.Math);
+            printf("%.2f\t",stud.English);
+            printf("%.2f\t",stud.Socialstudies);
+            printf("\t%.2f\t",stud.Music);
+            printf("%.2f\t",stud.PhysicalEdu);
+            printf("\n");
+            break;
+        }
     }
-    
-    printf("\nENTER THE NAME OF STUDENT YOU WANT TO SEARCH: \n");
-    scanf("%s", name);
-    
-    // reads information from the file
-    while (fread(&stud, sizeof(stud), 1, repository) == 1)
+    if(strcmp(stud.studFirstname,name)!=0)
     {
-        if (strcmp(stud.studFirstName, name) == 0) // compare the first name to the name entered
-        {
-            // prints out the information
-            printf("\nINFORMATION ABOUT %s", name);
-            printf("\nSTUDENT FIRST NAME:%s\nSTUDENT LAST NAME:%s\nTEACHER:%s\nSTUDENT CLASS:%d\nAGE:%d\nMATH:%.2f\nENGLISH:%.2f\nSOCIALSTUDIES:%.2f\nMUSIC:%.2f\nPHYSICAL EDUCATION:%.2f",
-                stud.studFirstName, stud.studLastName, stud.Teacher,
-                stud.studentClass, stud.Age, stud.Math, stud.English,
-                stud.Socialstudies, stud.Music, stud.PhysicalEdu);
-        }
-        else
-        {
-            printf("\nFILE NOT FOUND!!!!");
-        }
+        printf("Record not found!");
     }
-    
-    fclose(repository);
-    printf("\n*******PRESS ANY KEY*********");
-    system("pause");
-    system("cls");
+    fclose(repository); 
 }
 
 
